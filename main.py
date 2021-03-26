@@ -47,11 +47,25 @@ def getSelected(boxVars):
         vol = y+x *10
         executeCommand(f'./changeVolume.exe {vol}')
 
+ok_volumes = [0,30,50,80,100]
+added_vols = []
 count = 0
-for i in (0, 30, 50, 80, 100):
-    boxes[count].append(Checkbutton(master, variable = boxVars[count]))
-    boxes[count].grid(row=0, column=coly)
-    Label(master, text= f'{count} %').grid(row=x,column=coly+1)
+for x in range(rows):
+    boxes.append([])
+    for y in range(columns):
+        coly = y * 2
+        count = y+x *10
+        boxes[x].append(Checkbutton(master, variable = boxVars[x][y], command = lambda x = x: checkRow(x)))
+        
+        if count in ok_volumes:
+            if count not in added_vols:
+                added_vols.append(count)
+                if count == 0:
+                    boxes[x][y].grid(row=x, column=coly,columnspan=2)                
+                    Label(master, text= f'{count} %',font = ("Times", 30)).grid(row=x,column=coly+1,columnspan=1000)
+                else:
+                    boxes[x][y].grid(row=x, column=coly)                
+                    Label(master, text= f'{count} %',font = ("Times", 30)).grid(row=x,column=coly+1)
 
 
 b = Button(master, text = "Set Volume", command =lambda boxVars = boxVars: getSelected(boxVars), width = 10)
