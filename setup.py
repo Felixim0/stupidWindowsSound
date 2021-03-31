@@ -8,7 +8,7 @@ setup(
         'compressed': 1, 
         'optimize': 2,
         'bundle_files': 3, #Options 1 & 2 do not work on a 64bit system
-        'dist_dir': 'distribution3',  # Put .exe in dist/
+        'dist_dir': 'distributionCheesecake',  # Put .exe in dist/
         'xref': False,
         'skip_archive': False,
         'ascii': False,
@@ -17,7 +17,7 @@ setup(
   zipfile=None, 
   windows = [
         {
-            'script': 'main.pyw'
+            'script': 'buttonsOnly.pyw'
         }
     ],
 )
