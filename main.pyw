@@ -1,4 +1,4 @@
-from tkinter import *
+from Tkinter import *
 import subprocess
 
 master = Tk()
@@ -42,10 +42,11 @@ def getSelected(boxVars):
                 temp.append([i,j])
 
     if temp != []:
-        print (temp)
+        print(temp)
         x , y = temp[0][0], temp[0][1]
         vol = y+x *10
-        executeCommand(f'./changeVolume.exe {vol}')
+        command = './changeVolume.exe {}'.format(vol)
+        executeCommand(command)
 
 count = 0
 for x in range(rows):
@@ -55,7 +56,8 @@ for x in range(rows):
         count = y+x *10
         boxes[x].append(Checkbutton(master, variable = boxVars[x][y], command = lambda x = x: checkRow(x)))
         boxes[x][y].grid(row=x, column=coly)
-        Label(master, text= f'{count} %').grid(row=x,column=coly+1)
+        Label(master, text='{} %'.format(count)).grid(row=x, column=coly+1)
+
 
 
 b = Button(master, text = "Set Volume", command =lambda boxVars = boxVars: getSelected(boxVars), width = 10)
